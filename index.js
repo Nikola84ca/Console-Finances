@@ -96,3 +96,7 @@ var money = finances[i][1];
 var netTotal= 0;
 var increase= 0;
 var loss= 0;
+
+for (i=0; i<finances.length; i++) {
+  netTotal += finances[i][1];
+}
