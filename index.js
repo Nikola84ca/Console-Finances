@@ -110,3 +110,20 @@ for (i=1; i<finances.length; i++) {
 }
 
 var averageChange = totalChange / (finances.length - 1);
+
+
+var greatestIncrease = -Infinity;
+var greatestIncreaseDate = '';
+
+
+for (var i = 1; i < finances.length; i++) {
+  var currentMoney = finances[i][1];
+  var previousMoney = finances[i - 1][1];
+  var currentIncrease = currentMoney - previousMoney;
+
+  if (currentIncrease > greatestIncrease) {
+    greatestIncrease = currentIncrease;
+    greatestIncreaseDate = finances[i][0];
+  }
+  
+}
