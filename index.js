@@ -86,3 +86,13 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+
+var monthsNumber = finances.length;
+var totalChange = 0;
+var i= 0;
+var date = finances[i][0];
+var money = finances[i][1];
+var netTotal= 0;
+var increase= 0;
+var loss= 0;
