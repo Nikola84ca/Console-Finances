@@ -100,3 +100,13 @@ var loss= 0;
 for (i=0; i<finances.length; i++) {
   netTotal += finances[i][1];
 }
+
+
+for (i=1; i<finances.length; i++) {
+  var previous = finances[i - 1][1];
+  var currentMonth = finances[i][1];
+  var change = currentMonth - previous;
+  totalChange += change;
+}
+
+var averageChange = totalChange / (finances.length - 1);
