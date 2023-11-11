@@ -88,14 +88,12 @@ var finances = [
 ];
 
 
-var monthsNumber = finances.length;
+// var monthsNumber = finances.length;
 var totalChange = 0;
 var i= 0;
-var date = finances[i][0];
-var money = finances[i][1];
 var netTotal= 0;
-var increase= 0;
-var loss= 0;
+
+
 
 for (i=0; i<finances.length; i++) {
   netTotal += finances[i][1];
@@ -127,12 +125,10 @@ for (var i = 1; i < finances.length; i++) {
     greatestIncrease = currentIncrease;
     greatestIncreaseDate = finances[i][0];
   }
+
   if (currentChange < greatestDecrease) {
     greatestDecrease = currentChange;
     greatestDecreaseDate = finances[i][0];
   }
-  
 }
 
-console.log("Greatest Increase in Profits: $" + greatestIncrease + " on " + greatestIncreaseDate);
-console.log("Greatest Decrease in Profits: $" + greatestDecrease + " on " + greatestDecreaseDate);
