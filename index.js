@@ -132,3 +132,14 @@ for (var i = 1; i < finances.length; i++) {
   }
 }
 
+
+// The following will show in the console the result of the analysis
+
+console.log ("Financial Analysis\n" +
+"------------------\n" +
+"Total Months: " + finances.length + "\n" +
+"Net Total: $" + netTotal + "\n" +
+// the .toFixed is an inbuilt JS function to only show two decimals, I preferred doing this insted of the Math.round as it would have rounded the average change removing the decimals
+"Average Change: " + averageChange.toFixed(2) + "\n" +
+'Greatest Increase in Profits/Losses: ' + greatestIncreaseDate + ' ($' + greatestIncrease + ')' + "\n" +
+'Greatest Decrease in Profits/Losses: ' + greatestDecreaseDate + ' ($' + greatestDecrease + ')' + "\n" );
