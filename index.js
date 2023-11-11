@@ -114,16 +114,25 @@ var averageChange = totalChange / (finances.length - 1);
 
 var greatestIncrease = -Infinity;
 var greatestIncreaseDate = '';
-
+var greatestDecrease = Infinity;
+var greatestDecreaseDate = '';
 
 for (var i = 1; i < finances.length; i++) {
   var currentMoney = finances[i][1];
   var previousMoney = finances[i - 1][1];
   var currentIncrease = currentMoney - previousMoney;
+  var currentChange = currentMoney - previousMoney;
 
   if (currentIncrease > greatestIncrease) {
     greatestIncrease = currentIncrease;
     greatestIncreaseDate = finances[i][0];
   }
+  if (currentChange < greatestDecrease) {
+    greatestDecrease = currentChange;
+    greatestDecreaseDate = finances[i][0];
+  }
   
 }
+
+console.log("Greatest Increase in Profits: $" + greatestIncrease + " on " + greatestIncreaseDate);
+console.log("Greatest Decrease in Profits: $" + greatestDecrease + " on " + greatestDecreaseDate);
