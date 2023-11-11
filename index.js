@@ -119,15 +119,15 @@ for (var i = 1; i < finances.length; i++) {
   var currentMoney = finances[i][1];
   var previousMoney = finances[i - 1][1];
   var currentIncrease = currentMoney - previousMoney;
-  var currentChange = currentMoney - previousMoney;
+  var currentDecrease = currentMoney - previousMoney;
 
   if (currentIncrease > greatestIncrease) {
     greatestIncrease = currentIncrease;
     greatestIncreaseDate = finances[i][0];
   }
 
-  if (currentChange < greatestDecrease) {
-    greatestDecrease = currentChange;
+  if (currentDecrease < greatestDecrease) {
+    greatestDecrease = currentDecrease;
     greatestDecreaseDate = finances[i][0];
   }
 }
