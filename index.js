@@ -93,6 +93,7 @@ var totalChange = 0;
 var i= 0;
 var netTotal= 0;
 
+// This for loop flows through the finances array, selecting for each inner array the position [1], or the money number (position [0] is the date). It then increments ( += ) the netTotal variable with the value of each finances money at every loop, until "i" reaches the total length of the finances array. At the end of this loop we will have the total sum of the finances inside the variable netTotal.
 
 
 for (i=0; i<finances.length; i++) {
