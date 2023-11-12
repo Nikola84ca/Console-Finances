@@ -93,19 +93,18 @@ var totalChange = 0;
 var i= 0;
 var netTotal= 0;
 
-// This for loop flows through the finances array, selecting for each inner array the position [1], or the money number (position [0] is the date). It then increments ( += ) the netTotal variable with the value of each finances money at every loop, until "i" reaches the total length of the finances array. At the end of this loop we will have the total sum of the finances inside the variable netTotal.
-
+// The following for loop flows through the finances array, selecting for each inner array the position [1], or the money number (position [0] is the date). It then increments ( += ) the netTotal variable with the value of each finances money at every loop, until "i" reaches the total length of the finances array. At the end of this loop we will have the total sum of the finances inside the variable netTotal.
 
 for (i=0; i<finances.length; i++) {
   netTotal += finances[i][1];
 }
 
+// For the average change, I implemented a loop where [i] starts at at 1 (the second array) because I put that value in "currentMonth" and the value of the previousMonth in another variable to subtract them. So currentMonth takes finances[i][1] and the var previous takes finances[i - 1][1] which is the value of the month before. The change between [i] and [i-1] is stored in the variable "totalChange", that at every loop increments itself. So in the variable totalChange I have every time the sum of the differences between every two months (current and previous). Finally, outside the for loop, I calculated the averageChange by simply dividing the totalChange we obtained inside the loop, by the number of months in the array (finances.length -1).
 
 for (i=1; i<finances.length; i++) {
   var previous = finances[i - 1][1];
   var currentMonth = finances[i][1];
-  var change = currentMonth - previous;
-  totalChange += change;
+  totalChange += currentMonth - previous;
 }
 
 var averageChange = totalChange / (finances.length - 1);
