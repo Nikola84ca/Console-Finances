@@ -109,10 +109,12 @@ for (i=1; i<finances.length; i++) {
 
 var averageChange = totalChange / (finances.length - 1);
 
+// To calculate the greatest increase and greatest decrease I used a for loop that, like the previous averageChange loop, sets the [i] at 1, and compares the [i] array with the previous [i - 1] while it runs for the whole finances.length. Outside the loop I declared 4 var for the greatest increase/date and greatest decrease/date that I use inside the ifs and will be the main variables that I will be printed out in the console. Inside the For loop I used two temporary variables: currentMoney and previousMoney, the first takes the value of the money in the current [i] and the second one takes the value of the money of the [i - 1]. I also needed two temp variables that hold the currentIncrease and curentDecrease at every [i] position, so at every [i], the variables currentIncrease and currentDecrese are updated with the difference between the values inside the currentMoney and previousMoney variables. At this point I just needed to implement the who ifs to compare the current increase and greatest increase, one if > and one if <, eg: if currentIncrease is > than greatestIncrease, then greatestIncrease = currentIncrease and greatestDate= finances[i][0]. 
 
-var greatestIncrease = -Infinity;
+
+var greatestIncrease = 0;
 var greatestIncreaseDate = '';
-var greatestDecrease = Infinity;
+var greatestDecrease = 0;
 var greatestDecreaseDate = '';
 
 for (var i = 1; i < finances.length; i++) {
@@ -133,13 +135,13 @@ for (var i = 1; i < finances.length; i++) {
 }
 
 
-// The following will show in the console the result of the analysis
+// The following code will display the result of the analysis in the console
 
 console.log ("Financial Analysis\n" +
 "------------------\n" +
 "Total Months: " + finances.length + "\n" +
 "Net Total: $" + netTotal + "\n" +
-// the .toFixed is an inbuilt JS function to only show two decimals, I preferred doing this insted of the Math.round as it would have rounded the average change removing the decimals
+// the .toFixed is an inbuilt JS function to only show two decimals, this can be an alternative to the Math.round()
 "Average Change: " + averageChange.toFixed(2) + "\n" +
 'Greatest Increase in Profits/Losses: ' + greatestIncreaseDate + ' ($' + greatestIncrease + ')' + "\n" +
 'Greatest Decrease in Profits/Losses: ' + greatestDecreaseDate + ' ($' + greatestDecrease + ')' + "\n" );
