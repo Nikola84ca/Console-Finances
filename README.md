@@ -7,10 +7,12 @@ Born and raised in Italy, I moved to the UK in 2015. I have always been interest
 
 ## Usage
 
-You can visit the Finance Analysis Project by clicking [HERE](https://nikola84ca.github.io/console-finances/). On the website you will have to right-click on any black part of the browser, and select the Inspect option, then select the Console view to see the results of the Financial Analysis. Here is a gif animation of the step-by-step procedure:
+You can visit the Finance Analysis Project by clicking [HERE](https://nikola84ca.github.io/Console-Finances/). On the website you will have to right-click on any black part of the browser, and select the Inspect option, then select the Console view to see the results of the Financial Analysis. Alternatively you can clone the repository on your device as shown in the Installation section below and access the index.html file by opening it in your browser. Here is a gif animation of the step-by-step procedure:
+
+![Gif animation of how to use the page to view the Financial Analysis](/Images/financial-analysis-usage-animation.gif)
 
 ## Installation
-First, make sure that Git and Git Bash are installed on your system. To download this project on your machine click [HERE](https://github.com/Nikola84ca/Console-Finances) to go to the repository on GitHub. Click on the green CODE botton, and copy the link of the repository. In your machine, open gitBash and create a new folder where you will clone the project using the command below
+First, make sure that Git and Git Bash are installed on your system. To download this project on your machine click [HERE](https://github.com/Nikola84ca/Console-Finances) to go to the repository on GitHub. Click on the green CODE botton, and copy the link of the repository. In your machine, open gitBash and create a new folder where you will clone the project using the command below:
 
 ```bash
 Git mkdir your-project-folder
@@ -31,6 +33,8 @@ code .
 
 alternatively download the zip file in GitHub after pressing the Code button, unzip it and copy it in your project folder. Navigate to the folder using the cd command on gitbash and lounch your editor as shown above with code . To view the Financial Analysis open the index.html file on your browser, inspect the page by right-clicking on any black part of the browser, and once you select the Inspect option on the drop menu, select the Console view to see the results of the Financial Analysis.
 
+![Gif animation of how to use the page to view the Financial Analysis](/Images/financial-analysis-usage-animation.gif)
+
 ## Website Description 
 
 The website is a single page simply serves as access to the console log, that is where the Financial Analysis is shown. The analysis consists of:
@@ -45,53 +49,107 @@ The website is a single page simply serves as access to the console log, that is
 
 * The greatest decrease in Profit/Losses (date and amount) over the entire period.
 
-Here is a gif animation of the final result, you can compare it with the previous portfolio website by clicking [HERE](https://nikola84ca.github.io/my-portfolio/).
+This is the final analysis as shown in the browser console:
 
-![Gif animation of the webpage](/assets/images/01-portfolio-website-view.gif)
+![Gif animation of the webpage](/Images/financial-analysis-console-view.JPG)
 
 ## My Process
 
-* The first thing I did was designing a new, clearer structure of containers to have a clear idea of how to organize all the content. I started by analysing my previous portfolio, created with flex-boxes, and spotting all the possible improvement I could implement. The use of Bootstrap components has been fundamental to speed up the process and allow me to have a much more tidy, responsive and fast webpage. The first thing to do I did in the html file was to connect my project to Bootstrap through the relative html, Css and JavaScript links.
-
-
-![Gif animation of the header nav bar, when clicked they will redirect the user to the relative sections of the webpage and external links](/assets/images/02-portfolio-nav-menu.gif)
-
-For the work section I decided to include a dropdown menu, that serves as direct access to the specific project, and also a link to my GitHub profile. Here is a snippet of the HTML structure and its Relative CSS styling code for this nav bar:
+* The first thing I did was making sure the html file included the JavaScript link in the body section.
 
 ```HTML
-
+<script src="index.js"></script>
 ```
 
+* Then I identified the Data set give in the variable finances, an array of arrays that includes all the dates and relative funds of the company for every year of activity.
 
+```JavaScript
+var finances = [
+  ['Jan-2010', 867884],
+  ['Feb-2010', 984655],
+  ['Mar-2010', 322013],
+  ....
+   ['Dec-2016', 60988],
+  ['Jan-2017', 138230],
+  ['Feb-2017', 671099],
+];
+```
 
+* The first element that we want printed in the console is the Total number of months inside the Data set. This is equal to the finances array length, so I simply used the .length function inside the consol.log at the end of the code.
 
+```JavaScript
+console.log ("Financial Analysis\n" +
+"------------------\n" +
+"Total Months: " + finances.length + "\n" +
+....
+);
+```
 
-
-![Gif animation of the projects section, when passing the mouse on them the overlay color fades, and the background picture is fully visible, plus animation of the buttons.](/assets/images/03-portfolio-projects-cards-hover.gif)
-
-
-
+* The second requirement was to calculate the Net Total. I decided to implement a for loop that flows through the finances array, selecting for each inner array the position [1], or the money number (position [0] is the date). It then increments ( += ) the netTotal variable with the value of each finances money at every loop, until "i" reaches the total length of the finances array. At the end of this loop we will have the total sum of the finances inside the variable netTotal.
 
 
 ```JavaScript
-
 for (i=0; i<finances.length; i++) {
   netTotal += finances[i][1];
 }
+```
 
+* At this point I was required to calculate the average change between every year and the year before. I implemented a loop where [i] starts at at 1 (the second array) because I put that value in "currentMonth" and the value of the previousMonth in another variable to subtract them. So currentMonth takes finances[i][1] and the var previous takes finances[i - 1][1] which is the value of the month before. The change between [i] and [i-1] is stored in the variable "totalChange", that at every loop increments itself. So in the variable totalChange I have every time the sum of the differences between every two months (current and previous). Finally, outside the for loop, I calculated the averageChange by simply dividing the totalChange we obtained inside the loop, by the number of months in the array (finances.length -1).
+
+```JavaScript
+for (i=1; i<finances.length; i++) {
+  var previous = finances[i - 1][1];
+  var currentMonth = finances[i][1];
+  totalChange += currentMonth - previous;
+}
+
+var averageChange = totalChange / (finances.length - 1);
+```
+
+* Next I had to calculate the greatest increase and greatest decrease. I used a for loop that, like the previous averageChange loop, sets the [i] at 1, and compares the [i] array with the previous [i - 1] while it runs for the whole finances.length. Outside the loop I declared 4 var for the greatest increase/date and greatest decrease/date that I use inside the ifs and will be the main variables that I will be printed out in the console. Inside the For loop I used two temporary variables: currentMoney and previousMoney, the first takes the value of the money in the current [i] and the second one takes the value of the money of the [i - 1]. I also needed two temp variables that hold the currentIncrease and curentDecrease at every [i] position, so at every [i], the variables currentIncrease and currentDecrese are updated with the difference between the values inside the currentMoney and previousMoney variables. At this point I just needed to implement the ifs to compare the current increase and greatest increase, one if > and one if <, eg: if currentIncrease is > than greatestIncrease, then greatestIncrease = currentIncrease and greatestDate= finances[i][0].
+
+```JavaScript
+var greatestIncrease = 0;
+var greatestIncreaseDate = '';
+var greatestDecrease = 0;
+var greatestDecreaseDate = '';
+
+for (var i = 1; i < finances.length; i++) {
+  var currentMoney = finances[i][1];
+  var previousMoney = finances[i - 1][1];
+  var currentIncrease = currentMoney - previousMoney;
+  var currentDecrease = currentMoney - previousMoney;
+
+  if (currentIncrease > greatestIncrease) {
+    greatestIncrease = currentIncrease;
+    greatestIncreaseDate = finances[i][0];
+  }
+
+  if (currentDecrease < greatestDecrease) {
+    greatestDecrease = currentDecrease;
+    greatestDecreaseDate = finances[i][0];
+  }
+}
 ```
 
 
-* Lastly, I made sure that the website is much more responsive for mobile view compared to the previous project, the menu and dropmenu keep their functionality, as all the other bootstrap components. Here is a gif animation of the final result on mobile view:
+* Lastly, I made sure that the whole analysis is printed in the console simply by concatening the final variables in the console.log as shown below
 
-![Gif animation of the mobile view of the website.](/assets/images/05-portfolio-mobile-view.gif)
-
-The content is align in colums and all the functionality of links and hover effects are working. 
+```JavaScript
+console.log ("Financial Analysis\n" +
+"------------------\n" +
+"Total Months: " + finances.length + "\n" +
+"Net Total: $" + netTotal + "\n" +
+// the .toFixed is an inbuilt JS function to only show two decimals, this can be an alternative to the Math.round()
+"Average Change: " + averageChange.toFixed(2) + "\n" +
+'Greatest Increase in Profits/Losses: ' + greatestIncreaseDate + ' ($' + greatestIncrease + ')' + "\n" +
+'Greatest Decrease in Profits/Losses: ' + greatestDecreaseDate + ' ($' + greatestDecrease + ')' + "\n" );
+```
 
 
 ## Credits
 
-I would like to thank all the teachers and TA of the EdX bootcamp for all the content provided. I would like to credit [w3 schools](https://www.w3schools.com/html/html5_semantic_elements.asp) for the useful content responsive layouts, and the staff at [Bootstrap](https://getbootstrap.com/docs/5.0/layout/grid/) for the useful tools provided.
+I would like to thank all the teachers and TA of the EdX bootcamp for all the content provided and study materials. 
 
 ## Project Status and Upcoming Improvements
 
