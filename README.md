@@ -1,6 +1,6 @@
 # Console Finances Analysis Project
 
-Project and development of my new Portfolio Website using Bootstrap.
+Project and development of the analysis of a company's financial records.
 
 ## About Me 
 Born and raised in Italy, I moved to the UK in 2015. I have always been interested in new technologies and IT, as I studied IT in my A levels back in Italy. After 5 years working in content management for a website, I decided to make the step of learning Front-End Development thanks to the edX course, and on my gitHub profile I showcase not only my progress in Front-End Development as a student but also a journey that hopefully will lead to new exciting projects in this field.
@@ -12,7 +12,7 @@ You can visit the Finance Analysis Project by clicking [HERE](https://nikola84ca
 ![Gif animation of how to use the page to view the Financial Analysis](/Images/financial-analysis-usage-animation.gif)
 
 ## Installation
-First, make sure that Git and Git Bash are installed on your system. To download this project on your machine click [HERE](https://github.com/Nikola84ca/Console-Finances) to go to the repository on GitHub. Click on the green CODE botton, and copy the link of the repository. In your machine, open gitBash and create a new folder where you will clone the project using the command below:
+First, make sure that Git and Git Bash are installed on your system. To download this project on your machine click [HERE](https://github.com/Nikola84ca/Console-Finances) to go to the repository on GitHub. Click on the green CODE button, and copy the link of the repository. In your machine, open gitBash and create a new folder where you will clone the project using the command below:
 
 ```bash
 Git mkdir your-project-folder
